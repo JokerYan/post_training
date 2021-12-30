@@ -4,13 +4,19 @@ channels:
   - defaults
 dependencies:
   - python==3.7
+  - pytorch=1.9.0
+  - torchvision=0.10.0
   - tensorboard
   - opencv
   - scipy
   - matplotlib
   - easydict
-  - tensorflow-gpu
   - keras
   - numba
   - ncurses
-prefix: /home/yanzw/miniconda3/envs/mnist
+  - pip:
+      - torchattacks==3.0.0
+      - tqdm==4.61.2
+      - yacs==0.1.8
+
+prefix: /home/yanzw/miniconda3/envs/post_train
