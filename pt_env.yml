@@ -1,0 +1,16 @@
+name: post_train
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python==3.7
+  - tensorboard
+  - opencv
+  - scipy
+  - matplotlib
+  - easydict
+  - tensorflow-gpu
+  - keras
+  - numba
+  - ncurses
+prefix: /home/yanzw/miniconda3/envs/mnist
