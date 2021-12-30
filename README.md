@@ -1,8 +1,14 @@
-# post_training
-This is a placeholder repo and will be updated in the future
+# Adaptive Modeling Against Adversarial Attacks
 
-Redirect to actual experiment repos:
+This is the official code release for the [paper](https://arxiv.org/abs/2112.12431) "Adaptive Modeling Against Adversarial Attacks".
 
-CIFAR-10: https://github.com/JokerYan/fast_adversarial.git
 
-MNIST: https://github.com/JokerYan/pytorch-adversarial-training.git 
+## Experiments
+We have mainly conducted our experiment on two base model structures: [Fast FGSM](https://arxiv.org/abs/2001.03994) and [Madry Model](https://arxiv.org/abs/1706.06083). 
+Experiments are based on **CIFAR-10** and **MNIST** datasets. 
+
+To reproduce the experiment results on these two models, you can refer to the following repositories for more details:
+
+Fast FGSM: https://github.com/JokerYan/fast_adversarial.git
+
+Madry Model: https://github.com/JokerYan/pytorch-adversarial-training.git 
