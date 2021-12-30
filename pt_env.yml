@@ -17,5 +17,3 @@ dependencies:
       - torchattacks==3.0.0
       - tqdm==4.61.2
       - yacs==0.1.8
-
-prefix: /home/yanzw/miniconda3/envs/post_train
