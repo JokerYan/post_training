@@ -4,6 +4,7 @@ import logging
 
 import torch
 import torch.nn as nn
+from torch.utils.data import Subset
 
 from attacks import attack_pgd_targeted, attack_pgd
 
@@ -20,7 +21,27 @@ def cal_accuracy(outputs, labels):
     return correct / total
 
 
+def get_train_loaders_by_class(train_dataset, batch_size):
+    indices_list = [[] for _ in range(10)]
+    for i in range(len(train_dataset)):
+        label = int(train_dataset[i][1])
+        indices_list[label].append(i)
+    dataset_list = [Subset(train_dataset, indices) for indices in indices_list]
+    train_loader_list = [
+        torch.utils.data.DataLoader(
+            dataset=dataset,
+            batch_size=batch_size,
+            shuffle=True,
+            pin_memory=True,
+            num_workers=0,
+        ) for dataset in dataset_list
+    ]
+    return train_loader_list
+
+
 def post_train(model, images, train_loader, train_loaders_by_class, args):
+    assert len(images) == 1, "Post training algorithm only accepts test input of batch size 1"
+
     logger = logging.getLogger("eval")
 
     mu = torch.tensor(args.mean).view(3, 1, 1).cuda()
@@ -136,4 +157,4 @@ def post_train(model, images, train_loader, train_loaders_by_class, args):
             defense_acc = cal_accuracy(adv_output, label)
             loss_list.append(loss)
             acc_list.append(defense_acc)
-    return model, original_class, neighbour_class
+    return model
